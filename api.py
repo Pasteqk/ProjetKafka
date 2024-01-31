@@ -3,6 +3,7 @@ import psycopg2
 from pydantic import BaseModel
 import uvicorn
 import time
+from fastapi.middleware.cors import CORSMiddleware
 
 def wait_for_psycopg2(number_of_tries, time_between_tries):
   for _ in range(10):
@@ -14,6 +15,14 @@ def wait_for_psycopg2(number_of_tries, time_between_tries):
   raise TimeoutError('psycopg2 did not answer.')
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Modèle Pydantic pour les données GPS
 class GPSData(BaseModel):
@@ -32,7 +41,7 @@ def get_gps_data(ip: str):
     row = cursor.fetchone()
     if row == None:
         return {}
-    return GPSData(ip=row[0], latitude=row[1], longitude=row[2], timestamp=row[3])
+    return GPSData(ip=row[0], latitude=row[1], longitude=row[2], timestamp=int(row[3].timestamp()))
 
 @app.get("/gps")
 def get_gps_all():

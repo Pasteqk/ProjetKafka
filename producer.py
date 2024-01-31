@@ -46,15 +46,15 @@ def send_gps_data(ip):
     logging.info("Sending data ")
     data = {
         'ip': ip,
-        'latitude': latitude + (random.randrange(-10,10)/10),
-        'longitude':  longitude + (random.randrange(-10,10)/10),
+        'latitude': latitude + (random.randrange(-10,10)/500),
+        'longitude':  longitude + (random.randrange(-10,10)/500),
         'timestamp': time.time()
     }
     while globe.is_ocean(data["latitude"],data["longitude"]):
         data = {
             'ip': ip,
-            'latitude': latitude + (random.randrange(-10,10)/10),
-            'longitude': longitude + (random.randrange(-10,10)/10),
+            'latitude': latitude + (random.randrange(-10,10)/500),
+            'longitude': longitude + (random.randrange(-10,10)/500),
             'timestamp': time.time()
         }
         logging.info(f'Sending data: {data}')
