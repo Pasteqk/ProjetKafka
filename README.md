@@ -39,3 +39,10 @@ Pour ce projet j'ai exposé les ports suivants :
 - 8000 : pour l'api
 - 9093 : pour le kafka
 Si vous utilisez déjà un de ces ports, le container docker serait incapable de l'exposé et va donc créer des erreurs.
+
+# Authors
+
+## Antoine Vacossin
+Biscorray Alexandre
+Nolan Clerc
+Louis Oger
