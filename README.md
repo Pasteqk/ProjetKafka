@@ -42,7 +42,7 @@ Si vous utilisez déjà un de ces ports, le container docker serait incapable de
 
 # Authors
 
-## Antoine Vacossin
-Biscorray Alexandre
-Nolan Clerc
-Louis Oger
+- **Antoine Vacossin**
+- Biscorray Alexandre
+- Nolan Clerc
+- Louis Oger
