@@ -38,8 +38,21 @@ services:
       KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
       KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1 
+      CONNECT_CONFLUENT_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    healthcheck:
+      test: kafka-topics --bootstrap-server kafka-broker:9092 --list
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - backend
+    volumes:
+      - ./server.properties:/etc/kafka-broker/server.properties
 
   init-kafka:
     image: confluentinc/cp-kafka:7.5.3
@@ -62,7 +75,7 @@ services:
       - backend
     volumes:
       - ./server.properties:/etc/kafka/server.properties
-
+  
   producer1:
     build:
       context: .
