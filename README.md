@@ -31,7 +31,7 @@ Attendez de recevoir un message du type
 ```
 api_1           | INFO:     172.61.0.1:37798 - "GET /gps/IP1 HTTP/1.1" 200 OK
 ```
-Puis aller sur votre navigateur internet au lieu "http://localhost:8080/"
+Puis aller sur votre navigateur internet au lien "http://localhost:8080/"
 
 ##Exposition des ports
 Pour ce projet j'ai exposé les ports suivants :
